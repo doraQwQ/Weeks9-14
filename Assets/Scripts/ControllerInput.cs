@@ -24,6 +24,7 @@ public class ControllerInput : MonoBehaviour
     {
          
         Debug.Log("ATTACK  "+ context.phase);
+        
     }
     public void OnPoint(InputAction.CallbackContext context)
     {
