@@ -6,6 +6,7 @@ public class ManagerScipt : MonoBehaviour
     public int turnOrder=1;
     public Button button1;
     public Button button2;
+    public Woodshrink script;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,7 +24,7 @@ public class ManagerScipt : MonoBehaviour
         if (turnOrder == 1)
         {
             button1.interactable = true;
-            if(corr!= null)
+            if(script.corr!= null)
             {
                 button1.interactable = false;
             }          

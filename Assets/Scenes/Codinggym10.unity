@@ -461,19 +461,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.06388609
-      value: 4.0206413
-      inSlope: -4.133011
-      outSlope: -4.133011
+      time: 0.060522497
+      value: 3.931576
+      inSlope: -4.219741
+      outSlope: -4.219741
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.0318909
-      value: 0.019866943
-      inSlope: -4.133011
-      outSlope: -4.133011
+      time: 0.9916687
+      value: 0.002380371
+      inSlope: -4.219741
+      outSlope: -4.219741
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -481,9 +481,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  duration: 4
+  duration: 0
   time: 0
-  buttonyay: {fileID: 1712121727}
+  buttonyay: {fileID: 0}
 --- !u!1 &1051395187
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,6 +970,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1269437293}
   m_CullTransparentMesh: 1
+--- !u!1 &1588301405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1588301407}
+  - component: {fileID: 1588301406}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1588301406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588301405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724ef97d362edbd439a859d715562049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ManagerScipt
+  turnOrder: 1
+  button1: {fileID: 1712121727}
+  button2: {fileID: 1051395189}
+  script: {fileID: 951549997}
+--- !u!4 &1588301407
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588301405}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 147.56216, y: 65.21515, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1712121725
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,7 +1101,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951549997}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Woodshrink, Assembly-CSharp
         m_MethodName: CallCoroutine
         m_Mode: 1
@@ -1261,3 +1309,4 @@ SceneRoots:
   - {fileID: 607754870}
   - {fileID: 1256021050}
   - {fileID: 636932664}
+  - {fileID: 1588301407}
