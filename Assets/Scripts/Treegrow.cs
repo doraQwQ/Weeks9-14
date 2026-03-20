@@ -13,6 +13,8 @@ public class TreeGrow : MonoBehaviour
     public float appleGrowDuration;
     public GameObject applePrefab;
 
+    private Coroutine treeGrowCoroutine;
+    private Coroutine appleCoroutine;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,9 +42,10 @@ public class TreeGrow : MonoBehaviour
             Debug.Log("How long has it been since the last frame?: " + Time.deltaTime);
             yield return null;
         }
+        //IMPORTANT!!!!
 
         //relinguish control of Unity so everything can run
-        Coroutine appleCoroutine = StartCoroutine(AppleGrowUpdate());  //grows 3 apples
+        appleCoroutine = StartCoroutine(AppleGrowUpdate());  //grows 3 apples
 
         //Wait until the appleCoroutine is done before moving on to the next line of code
         yield return appleCoroutine;
@@ -78,9 +81,23 @@ public class TreeGrow : MonoBehaviour
             yield return null;
         }
     }
-
+    //IMPORTANT!!!!
     public void OnGrowPress()
     {
-        StartCoroutine(TreeGrowUpdate());
+        treeGrowCoroutine = StartCoroutine(TreeGrowUpdate());
+    }
+    //IMPORTANT!!!!
+    public void OnStopPress()
+    {
+        //Instead of stopping the instance of Coroutine.
+        //We stop the coroutine that is currently running the tree grow update.
+        if(treeGrowCoroutine != null)
+        {
+            StopCoroutine(treeGrowCoroutine);
+        }
+        if (appleCoroutine != null)
+        {
+            StopCoroutine(appleCoroutine);
+        }
     }
 }
