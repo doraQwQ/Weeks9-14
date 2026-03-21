@@ -16,23 +16,23 @@ public class Hazard : MonoBehaviour
         bool isInHazardThisFrame = false; //this is how we tell if the in hazard never got triggered this frame
         foreach(SpriteRenderer sr in hazardSRs)
         {
-            if (sr.bounds.Contains(transform.position))
-            {
-                if (isInHazard)
-                {
-                    //still in the hazard
-                    isInHazardThisFrame = true;
-                }
-                else
-                {
-                    //just entered hazard
-                    OnEnterHazard.Invoke();
-                    isInHazard = true;
-                    //as soon as we're in one we need to skip out of the loop so we don't say
-                    //oh, no we're not in this water and ignore the previous one we are in...
-                    return;
-                }
-            }
+            //if (sr.bounds.Contains(transform.position))
+            //{
+            //    if (isInHazard)
+            //    {
+            //        //still in the hazard
+            //        isInHazardThisFrame = true;
+            //    }
+            //    else
+            //    {
+            //        //just entered hazard
+            //        OnEnterHazard.Invoke();
+            //        isInHazard = true;
+            //        //as soon as we're in one we need to skip out of the loop so we don't say
+            //        //oh, no we're not in this water and ignore the previous one we are in...
+            //        return;
+            //    }
+            //}
         }
 
         //have to wait to the end of the loop to see if we've left the hazard though ;-)

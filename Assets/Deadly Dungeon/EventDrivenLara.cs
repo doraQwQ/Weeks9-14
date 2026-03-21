@@ -112,14 +112,14 @@ public class EventDrivenLara : MonoBehaviour
         //set swimming
         animatorController.SetBool("isSwimming", isSwimming);
         //set left/right direction
-        if (inputVector.x < -0.01f)
-        {
-            sr.flipX = true;
-        }
-        else if (inputVector.x > 0.01f)
-        {
-            sr.flipX = false;
-        }
+        //if (inputVector.x < -0.01f)
+        //{
+        //    sr.flipX = true;
+        //}
+        //else if (inputVector.x > 0.01f)
+        //{
+        //    sr.flipX = false;
+        //}
         //set movement speed: if it's 0 will idle, if > 0.1 will walk/swim
         animatorController.SetFloat("movement", inputVector.sqrMagnitude);
     }
