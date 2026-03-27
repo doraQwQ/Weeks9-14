@@ -24,8 +24,8 @@ public class KnightScript : MonoBehaviour
         Vector2  moveDirection = context.ReadValue<Vector2>();
         xMovenment = moveDirection.x;
 
-        bool isRunning = xMovenment != 0;
-        knightAnimator.SetBool("IsRunning", true);
+        bool IsRunning = xMovenment != 0;
+        knightAnimator.SetBool("IsRunning", IsRunning);
     }
     //Basically play the sound
     public void OnFootstepint ()
