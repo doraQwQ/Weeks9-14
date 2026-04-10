@@ -9,15 +9,20 @@ public class BounceTwo : MonoBehaviour
     public Vector3 positions;
     public Vector3 startPos;
     public AnimationCurve curve;
+
     public float duration = 2;
     public float value;
     public float progress = 0;
+
     public Sprite jump;
     public Sprite fall;
-    public SpriteRenderer spriteRD;
-    private Coroutine jumpCoroutine;
+    
     public GameObject crack;
     public GameObject crackTwo;
+
+    public SpriteRenderer spriteRD;
+    public AudioSource audioSource;
+    private Coroutine jumpCoroutine;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -66,17 +71,15 @@ public class BounceTwo : MonoBehaviour
         progress = 0;
         transform.position = startPos;
         spriteRD.sprite = jump;
-
-
-
-
+        started = false;
     }
     public void OnJumpTwo(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if(context.started&&!started)
         {
             jumpCoroutine = StartCoroutine(JumpCoroutine());
-            
+            started = true;
+            audioSource.Play();
         }
 
     }
