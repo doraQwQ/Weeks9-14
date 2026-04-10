@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,16 +12,32 @@ public class BounceTwo : MonoBehaviour
     public float duration = 2;
     public float value;
     public float progress = 0;
+    public Sprite jump;
+    public Sprite fall;
+    public SpriteRenderer spriteRD;
+    private Coroutine jumpCoroutine;
+    public GameObject crack;
+    public GameObject crackTwo;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        spriteRD=GetComponent<SpriteRenderer>();
+        crack.SetActive(false);
+        crackTwo.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (started)
+        
+        
+    }
+    private IEnumerator JumpCoroutine()
+    {
+        startPos = transform.position;
+        startPos.z = 0;
+        progress =0;
+        while (progress < 1)
         {
             progress += Time.deltaTime / duration;
             value = curve.Evaluate(progress);
@@ -28,22 +45,43 @@ public class BounceTwo : MonoBehaviour
             positions.y += value;
             transform.position = positions;
 
-            if (progress >= 1)
+            if (progress > 0.134)
             {
-                progress = 0;
-                transform.position = startPos;
-                started = false;
+                crack.SetActive(true);
+                crackTwo.SetActive(true);
             }
+
+            if (progress < 0.4f)
+            {
+                spriteRD.sprite = jump;
+            }
+            else if (progress > 0.4f)
+            {
+                spriteRD.sprite = fall;
+            }
+            yield return null;
         }
+        crack.SetActive(false);
+        crackTwo.SetActive(false);
+        progress = 0;
+        transform.position = startPos;
+        spriteRD.sprite = jump;
+
+
+
+
     }
     public void OnJumpTwo(InputAction.CallbackContext context)
     {
-        if(context.started && !started)
+        if(context.started)
         {
-            started = true;
-            startPos = transform.position;
-            startPos.z = 0;
+            jumpCoroutine = StartCoroutine(JumpCoroutine());
+            
         }
 
+    }
+    public void Prin(InputAction.CallbackContext context)
+    {
+        print(progress);
     }
 }
