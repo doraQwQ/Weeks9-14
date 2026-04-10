@@ -52,6 +52,9 @@ public class Bounce : MonoBehaviour
     }
     public void Change(InputAction.CallbackContext context)
     {
+        if (context.performed)
+        {
 
+        }
     }
 }
