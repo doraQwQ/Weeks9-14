@@ -15,6 +15,7 @@ public class Bounce : MonoBehaviour
     public float duration=2;
     public float value;
     public float progress = 0;
+    public AudioSource audioSource;
     private Coroutine jumpCorotine;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -63,6 +64,7 @@ public class Bounce : MonoBehaviour
         {
             jumpCorotine = StartCoroutine(JumpCorotine());
             isJumping=true;
+            audioSource.Play();
         }
     }
 
