@@ -37,6 +37,8 @@ public class BounceTwo : MonoBehaviour
         
         
     }
+    //This corotine lets the player to jump and fall down.
+    //Player will change face in between
     private IEnumerator JumpCoroutine()
     {
         startPos = transform.position;
@@ -73,6 +75,8 @@ public class BounceTwo : MonoBehaviour
         spriteRD.sprite = jump;
         started = false;
     }
+    //this starts the corotine and prevent another corotine happen,
+    //if there is one running already.
     public void OnJumpTwo(InputAction.CallbackContext context)
     {
         if(context.started&&!started)
@@ -83,8 +87,5 @@ public class BounceTwo : MonoBehaviour
         }
 
     }
-    public void Prin(InputAction.CallbackContext context)
-    {
-        print(progress);
-    }
+    
 }
