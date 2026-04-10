@@ -1,17 +1,22 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 using static UnityEditor.Rendering.CameraUI;
 public class Bounce : MonoBehaviour
 {
-    public bool started = false;
+    
     public Vector3 positions;
     public Vector3 startPos;
+    public bool isJumping=false;
     public AnimationCurve curve;
     public float duration=2;
     public float value;
     public float progress = 0;
+    private Coroutine jumpCorotine;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,34 +29,41 @@ public class Bounce : MonoBehaviour
      * assign back to the transform position to have a bounce effect.*/
     void Update()
     {
-        if (started)
+        
+    }
+    private IEnumerator JumpCorotine()
+    {
+        startPos = transform.position;
+        startPos.z = 0;
+        progress = 0;
+
+        while (progress < 1)
         {
-            progress += Time.deltaTime / duration;      
+            progress += Time.deltaTime / duration;
             value = curve.Evaluate(progress);
+
             positions = startPos;
             positions.y += value;
+
             transform.position = positions;
 
-            if(progress >= 1)
-            {
-                progress = 0;
-                transform.position = startPos;
-                started = false;
-            }
+            yield return null; 
         }
+        progress = 0;
+        transform.position = startPos;
+        isJumping = false;
     }
+    //When the user presses jump
+    //It starts the jumping corotine.
+    //it also prevent corotine starts if there is one that is already running.
     public void OnJump(InputAction.CallbackContext context)
     {
-        Debug.Log("JUMP " + context.phase);
-        if (context.started&&!started)
+        //Debug.Log("JUMP!!");
+        if (context.started && !isJumping)
         {
-            started = true;
-            startPos= transform.position;
-            startPos.z = 0;
+            jumpCorotine = StartCoroutine(JumpCorotine());
+            isJumping=true;
         }
     }
-    public void Change(InputAction.CallbackContext context)
-    {
 
-    }
 }
