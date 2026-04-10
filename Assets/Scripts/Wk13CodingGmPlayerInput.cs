@@ -8,18 +8,21 @@ public class Wk13CodingGmPlayerInput : MonoBehaviour
 {
     public Wk13CodingGymManagerscript manager;
     public Vector2 moveDirection;
-    public float moveSpeed;
+    public float moveSpeed=5f;
 
-
+    public float health = 0f;
+    public bool isDead = true;
     public bool isSqueezed = false;
     public Coroutine squeezeCorotine;
+    public Coroutine dashCorotine;
     public AnimationCurve Curve;
+    public TrailRenderer trailRenderer;
     public float duration = 1;
     public float value;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        trailRenderer.emitting = false;
     }
 
     // Update is called once per frame
@@ -61,5 +64,34 @@ public class Wk13CodingGmPlayerInput : MonoBehaviour
     public void OnSqueezed()
     {
         squeezeCorotine = StartCoroutine(SqueezeCoroutine());
+    }
+    public void OnHeal()
+    {
+        health = 100;
+        if(health > 0)
+        {
+            isDead=false;
+        }
+    }
+    public void OnDash()
+    {
+        if(dashCorotine != null)
+        {
+            StopCoroutine(dashCorotine);
+        }
+        dashCorotine = StartCoroutine(DashCoroutine());
+    }
+    public IEnumerator DashCoroutine()
+    {
+        trailRenderer.emitting=true;
+        float timer= 0+Time.deltaTime;
+        while (timer < 1f)
+        {
+            moveSpeed = 20f;
+            yield return null;
+        }
+        timer = 0;
+        moveSpeed = 0;
+        trailRenderer.emitting = false;
     }
 }

@@ -7,8 +7,8 @@ public class Wk13CodingGymManagerscript : MonoBehaviour
 {
     public List<Sprite> possiblePlayerVisuals;
     public List<PlayerInput> existingPlayers;
-
     
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -57,6 +57,15 @@ public class Wk13CodingGymManagerscript : MonoBehaviour
 
 
             }
+        }
+    }
+    public void OnHeal()
+    {
+        for (int i = 0; i < existingPlayers.Count; i++)
+        {
+            PlayerInput playerInput = GetComponent<PlayerInput>();
+            GameObject existingPlayerObject = existingPlayers[i].gameObject;
+            Wk13CodingGmPlayerInput existingPlayerInput = existingPlayerObject.GetComponent<Wk13CodingGmPlayerInput>();
         }
     }
 }
