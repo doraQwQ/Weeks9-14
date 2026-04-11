@@ -43,7 +43,7 @@ public class BounceTwo : MonoBehaviour
     //There are sprite changes in between
     private IEnumerator JumpCoroutine()
     {
-        startPos = transform.position;
+        startPos = new Vector3(0.02f, -1.81f, 0f);
         startPos.z = 0;
         progress =0;
         while (progress < 1)
@@ -84,6 +84,14 @@ public class BounceTwo : MonoBehaviour
         jumpCoroutine = StartCoroutine(JumpCoroutine());
         isJumping = true;
         audioSource.Play();
+    }
+    public void StopJumpTwo()
+    {
+        if (jumpCoroutine != null)
+        {
+            StopCoroutine(jumpCoroutine);
+            isJumping = false;
+        }
     }
     
 }

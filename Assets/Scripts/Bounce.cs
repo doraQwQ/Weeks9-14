@@ -33,7 +33,7 @@ public class Bounce : MonoBehaviour
      * assign back to the transform position to have a bounce effect.*/
     private IEnumerator JumpCorotine()
     {
-        startPos = transform.position;
+        startPos = new Vector3(0.02f, -1.81f, 0f);
         startPos.z = 0;
         progress = 0;
 
@@ -63,5 +63,13 @@ public class Bounce : MonoBehaviour
         isJumping=true;
 
     }
+    public void StopJump()
+    {
+        if (jumpCorotine != null)
+        {
+            StopCoroutine(jumpCorotine);
+            isJumping = false;
+        }
+    }   
 
 }

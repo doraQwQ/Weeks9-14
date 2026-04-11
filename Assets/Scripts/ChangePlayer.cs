@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class ChangePlayer : MonoBehaviour
 {
@@ -19,31 +20,30 @@ public class ChangePlayer : MonoBehaviour
     }
     public void ChangePlayers(InputAction.CallbackContext context)
     {
-        bool activated = false;
-        if (!playerOne.isJumping && !playerTwo.isJumping)
+        if (context.started && !playerOne.isJumping && !playerTwo.isJumping)    //prevent glitches
         {
-            one = !one;
-            activated = false;
+            {
+                one = !one;
+                print(one);
+            }
+            if (one)// Player one active
+            {
+                playerOne.transform.position = new Vector3(0.02f, -1.81f, 0f);
+                playerTwo.transform.position = new Vector3(20, -1.81f, 0);
+                print(playerTwo.transform.position);
+            }
+            else if (one == false)// Player two active
+            {
+                playerTwo.transform.position = new Vector3(0.02f, -1.81f, 0f);
+                playerOne.transform.position = new Vector3(20, -1.81f, 0);
+                print(playerOne.transform.position);
+            }
         }
-        if (!activated)
-        {
-            playerTwo.transform.position = new Vector3(20f, 20f, 0);
-            activated = true;
-        }
-        if (!activated)
-        {
-            playerOne.transform.position = new Vector3(20f, 20f, 0);
-            activated = true;
-        }
+
     }
     public void OnJumps(InputAction.CallbackContext context)
     {
-        //if (context.started)
-        //{
-        //    playerOne.OnJump();
-        //    
-        //}
-        one = false;
+      
         if (one && context.started && !playerOne.isJumping)
         {
             playerOne.OnJump();
@@ -55,6 +55,14 @@ public class ChangePlayer : MonoBehaviour
         {
             playerTwo.OnJumpTwo();
             Debug.Log("Player Two Jumped");
+        }
+    }
+    public void stopClapperboard(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            playerTwo.StopJumpTwo();
+            playerOne.StopJump();
         }
     }
 }
