@@ -43,6 +43,8 @@ public class BounceTwo : MonoBehaviour
     //There are sprite changes in between
     private IEnumerator JumpCoroutine()
     {
+        crack.SetActive(false);
+        crackTwo.SetActive(false);
         startPos = new Vector3(0.02f, -1.81f, 0f);
         startPos.z = 0;
         progress =0;
@@ -91,6 +93,7 @@ public class BounceTwo : MonoBehaviour
         {
             StopCoroutine(jumpCoroutine);
             isJumping = false;
+            
         }
     }
     
