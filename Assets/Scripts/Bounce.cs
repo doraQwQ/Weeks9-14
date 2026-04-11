@@ -23,15 +23,14 @@ public class Bounce : MonoBehaviour
     {
         
     }
-
-    // Update is called once per frame
-    /*This part uses a pre-recorded positon.
-     * Later another value = the pre-recorded pos plus the curve position.
-     * assign back to the transform position to have a bounce effect.*/
+    // Update is called once per frame  
     void Update()
     {
         
     }
+    /*This part uses a pre-recorded positon.
+     * Later another value = the pre-recorded pos plus the curve position.
+     * assign back to the transform position to have a bounce effect.*/
     private IEnumerator JumpCorotine()
     {
         startPos = transform.position;
