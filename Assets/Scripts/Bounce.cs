@@ -56,15 +56,12 @@ public class Bounce : MonoBehaviour
     //When the user presses jump
     //It starts the jumping corotine.
     //it also prevent corotine starts if there is one that is already running.
-    public void OnJump(InputAction.CallbackContext context)
+    public void OnJump()
     {
-        //Debug.Log("JUMP!!");
-        if (context.started && !isJumping)
-        {
-            jumpCorotine = StartCoroutine(JumpCorotine());
-            isJumping=true;
-            audioSource.Play();
-        }
+        jumpCorotine = StartCoroutine(JumpCorotine());
+        audioSource.Play();
+        isJumping=true;
+
     }
 
 }

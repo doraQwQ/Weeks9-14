@@ -3,8 +3,9 @@ using UnityEngine.InputSystem;
 
 public class ChangePlayer : MonoBehaviour
 {
-    public GameObject playerOne;
-    public GameObject playerTwo;
+    public Bounce playerOne;
+    public BounceTwo playerTwo;
+    public bool one = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,17 +19,42 @@ public class ChangePlayer : MonoBehaviour
     }
     public void ChangePlayers(InputAction.CallbackContext context)
     {
-        BounceTwo bounceTwo = GetComponent<BounceTwo>();
-        Bounce bounce = GetComponent<Bounce>();
-        if (bounceTwo.started == false && bounce.isJumping == false)  //ensure not in any jumps
+        bool activated = false;
+        if (!playerOne.isJumping && !playerTwo.isJumping)
         {
-
-
+            one = !one;
+            activated = false;
+        }
+        if (!activated)
+        {
+            playerTwo.transform.position = new Vector3(20f, 20f, 0);
+            activated = true;
+        }
+        if (!activated)
+        {
+            playerOne.transform.position = new Vector3(20f, 20f, 0);
+            activated = true;
         }
     }
-    public void WhoJumps(InputAction.CallbackContext context)
+    public void OnJumps(InputAction.CallbackContext context)
     {
-        bool one = true;
+        //if (context.started)
+        //{
+        //    playerOne.OnJump();
+        //    
+        //}
+        one = false;
+        if (one && context.started && !playerOne.isJumping)
+        {
+            playerOne.OnJump();
+            Debug.Log(one);
+            Debug.Log("Player One Jumped");
 
+        }
+        else if (!one && context.started && !playerTwo.isJumping)
+        {
+            playerTwo.OnJumpTwo();
+            Debug.Log("Player Two Jumped");
+        }
     }
 }
