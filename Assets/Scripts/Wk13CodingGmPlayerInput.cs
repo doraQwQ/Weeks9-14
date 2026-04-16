@@ -44,7 +44,7 @@ public class Wk13CodingGmPlayerInput : MonoBehaviour
             PlayerInput playerInput = GetComponent<PlayerInput>();
             manager.TyAttack(playerInput);
         }
-    }
+    }//For attacking
     public IEnumerator SqueezeCoroutine()
     {
         Vector3 orignalscaled = transform.localScale;
